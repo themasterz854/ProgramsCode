@@ -6,7 +6,6 @@
 #include<fstream>
 #include<ios>
 #include<thread>
-#include<conio.h>
 void encrypt(char s[100], char fn[100],int flagt);
 void decrypt(char s[100], char fn[100]);
 int main()
