@@ -9,5 +9,5 @@ int main()
     cout<<"Enter the number by which is should be divisible\n";
     cin>>y;
     cout<<x+y-(x%y)<<"\n";
-    cout<<y*((x/y)+1);
+    cout<<y*((x/y)-1);
 }
