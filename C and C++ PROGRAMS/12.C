@@ -1,4 +1,4 @@
-1#include<stdio.h>
+#include<stdio.h>
 #define ROWS 3
 #define COLS 3
 void matrixInput(int mat[][COLS]);
