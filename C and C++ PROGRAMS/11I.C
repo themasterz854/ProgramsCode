@@ -31,7 +31,7 @@ int find_lcm(int n1,int n2)
  static int temp=1;
  if(temp%n2==0 && temp%n1==0)
  return temp;
- temp++;
+ temp = temp + 1;
  find_lcm(n1,n2);
  return temp;
 }
