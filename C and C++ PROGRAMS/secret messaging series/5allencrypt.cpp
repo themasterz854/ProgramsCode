@@ -66,7 +66,7 @@ int main()
             case 2: {
                 std::cout << "Enter the filename for the decrypted file to be stored as (write default for default name)\n";
                 std::cin.getline(filename, 100);
-                if (!_strcmpi(filename,"default"))
+                if (!_strcmpi(filename, "default"))
                     strcpy_s(filename, "decrypted.txt");
                 decrypt(str, filename);
                 std::cout << "File decrypted successfully as " << filename << "\nDo you want to continue? y or n\n";

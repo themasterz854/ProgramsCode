@@ -1,0 +1,22 @@
+var can be overwritten, let only lets u declare once
+no need to escape double quotes inside single quotes 
+strings can be concatenated using + or +=
+
+string.length
+
+Array.push() (insert at the end of the array)
+Array.pop() (remove the last element from array)
+Array.shift() (remove the first element)
+Array.unshift() (add at the start of the array)
+
+variables created without let or const are automatically created in the global scope.
+
+== compares by converting to common type 
+=== strict comparison , will return false for different data types
+
+
+object properties should be strings
+use commas to separate items in object
+use [] bracket to access properties with spaces
+delete obj.prop
+obj.hasOwnProperty(prop) (to check if property there or not)
