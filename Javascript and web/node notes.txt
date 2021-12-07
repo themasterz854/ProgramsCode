@@ -1,0 +1,11 @@
+express res.send() is equivalent to writing res.write() + res.send() in nodejs
+
+const express = require('express');
+const app = express();
+app.METHOD(PATH,HANDLER);
+app.get('/',(req,res) => { res.send("Hello"); });
+
+const PORT - process.env.PORT || 80;
+
+res.sendFile(absolutePath);
+absolutePath = __dirname + "./filelocation";
