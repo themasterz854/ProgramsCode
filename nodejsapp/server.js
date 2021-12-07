@@ -3,14 +3,16 @@ const express = require('express');
  
 // Creating express object
 const app = express();
- 
+
+
+var absolutepathofhtmlfile = __dirname + '/htmlpracticepage.html';
+var absolutepathofassets = __dirname + '/assets';
 // Handling GET request
+app.use(express.static(absolutepathofassets));
 app.get('/', (req, res) => {
-    res.send('OP madarchod '
-        + 'hai')
-    res.end()
-})
- 
+    res.sendFile(absolutepathofhtmlfile);
+});
+
 // Port Number
 const PORT = process.env.PORT || 80;
  
