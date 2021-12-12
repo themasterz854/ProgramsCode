@@ -9,3 +9,23 @@ const PORT - process.env.PORT || 80;
 
 res.sendFile(absolutePath);
 absolutePath = __dirname + "./filelocation";
+
+res.sendjson(jsonobject);
+
+app.use(express.static(absolutepathofassets);
+const dotenv = require('dotenv');
+dotenv.config();
+
+app.METHOD(path, middlewareFunction)
+
+
+chain functions using next();
+
+//route parameters
+:word in the url parameters
+const {word} = req.params;
+
+req.query.name(html)
+
+app.use(express.urlendocoded())
+app.use(express.json())
