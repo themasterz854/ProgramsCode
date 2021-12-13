@@ -28,4 +28,4 @@ const {word} = req.params;
 req.query.name(html)
 
 app.use(express.urlendocoded())
-app.use(express.json())
+app.use(express.json())`

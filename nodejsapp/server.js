@@ -1,16 +1,27 @@
 // Requiring module
+var sql = require('mysql');
+var fs = require('fs');
+//var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('./key.pem', 'utf8');
+var certificate = fs.readFileSync('./cert.pem', 'utf8');
 const dotenv = require('dotenv');
 dotenv.config();
+var credentials = {key: privateKey, cert: certificate};
 const express = require('express');
 // Creating express object
 const app = express();
-var bodyParser = require("body-parser");
 var absolutepathofhtmlfile = __dirname + '/htmlpracticepage.html';
 var absolutepathofhtml2file = __dirname + '/htmlpage2.html';
 var absolutepathofassets = __dirname + '/assets';
 var jsonobj = { "message": "hey"};
 var name;
+//var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 // Handling GET request
 app.use(function middleware(req, res, next) {
   var string = req.method + " " + req.path + " - " + req.ip;
@@ -79,8 +90,7 @@ app.get('/name', function(req, res) {
     name: `${firstName} ${lastName}`
   });
 });
-app.use('/name',express.json());
-app.use('/name',express.urlencoded());
+
 app.post('/name', function(req, res) {
   // Handle the data in the request
   console.log(req.body.first);
@@ -89,9 +99,61 @@ app.post('/name', function(req, res) {
   console.log(string);
   res.json({ name: string });
 });
-// Port Number
-const PORT = process.env.PORT || 80;
+
+var con = sql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Hellstar#92",
+  database: "nodepractice"
+});
+con.connect(function(err){ if (err) throw err;
+  console.log("Connected!");
+ app.post('/', (req,res) => {
+  var FN,LN,PASS,SEX,t,tp;
+   FN = req.body.firstName;
+   LN = req.body.lastName;
+   PASS = req.body.password;
+   SEX = req.body.sex
+   t = req.body.technique;
+   tp = req.body.ptechnique;
+   if(t === undefined)
+    t = "no computer";
+   if(tp === undefined)
+   tp = "no phone";
+   res.send({FN,LN,PASS,SEX,t,tp});
+   var values = [[FN,LN,PASS,SEX]];
  
+    var sql = 'INSERT INTO  CUSTOMERDATA VALUES ?';
+    con.query(sql, [values], function (err, result) {
+      if (err) 
+      {
+        
+        throw err;
+      }
+      console.log("values inserted");
+    });
+  });
+  FN = LN = PASS = t = tp = SEX = undefined;
+ })
 // Server Setup
-app.listen(PORT,console.log(
-  `Server started on port ${PORT}`));
+//app.listen(PORT,console.log(
+  //`Server started on port ${PORT}`));
+
+ 
+  
+
+//httpServer.listen(8080);
+
+
+/*con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query("CREATE DATABASE mydb", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});*/
+
+httpsServer.listen(8443);
+
+console.log("Server listening https on port 8443");
